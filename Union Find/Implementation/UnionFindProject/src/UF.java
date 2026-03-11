@@ -1,46 +1,16 @@
 public class UF {
-    private int[] id;
-    private int[] sz;
-    private int count;
+    private int[] id; //array to store component ID of each object
+    private int count; //to track how many connected components exist
 
-    public UF(int N){
-        count = N;
-        id = new int[N];
-        sz = new int[N];
-        for (int i=0; i<N; i++){
-            id[i] = i;
-            sz[i] = 1;
+    public UF(int N){//N is the number of objects
+        count=N;
+        id=new int[N];//initially N groups, total objects=total components
+        for(int i=0;i<N;i++){
+            id[i]=i;//sets each object to itself. Object's 0's id is 0
         }
     }
-
     public int count(){
-        return count;
+        return count;//current number of components
     }
-
-    public int find(int p){
-        while(p != id[p]){
-            id[p]=id[id[p]];
-            p=id[p];
-        }
-        return p;
-    }
-
-    public boolean connected(int p,int q){
-        return find(p)==find(q);
-    }
-
-    public void union(int p, int q){
-        int i=find(p);
-        int j=find(q);
-        if (i==j) return;
-
-        if (sz[i]<sz[j]){
-            id[i]=j;
-            sz[j]+=sz[j];
-        }else{
-            id[j]=i;
-            sz[i]+=sz[j];
-        }
-        count--;
-    }
+    public int find()
 }
