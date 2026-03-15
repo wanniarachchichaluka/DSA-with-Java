@@ -12,5 +12,21 @@ public class UF {
     public int count(){
         return count;//current number of components
     }
-    public int find()
+    public int find(int p){ return id[p];}
+    public boolean connected(int p, int q){
+        return find(p) == find(q);
+    }
+    public void union(int p, int q){
+        int pID = find(p);
+        int qID = find(q);
+
+        if (pID == qID) return;
+
+        for(int i=0;i< id.length; i++){
+            if (id[i]==pID){
+                id[i]=qID;
+            }
+        }
+        count--;
+    }
 }
